@@ -644,13 +644,18 @@ sub hyperlink {
 sub whine {
     my ($self, $line, $complaint) = @_;
 
-    # Convert errors in Pod::Simple that are warnings in Pod::Checker
-    # XXX Do differently so the $complaint can be reworded without this breaking
     my $severity = 'ERROR';
-    $severity = 'WARNING' if
-        $complaint =~ /^Expected '=item .+?'$/ ||
-        $complaint =~ /^You can't have =items \(as at line .+?\) unless the first thing after the =over is an =item$/ ||
-        $complaint =~ /^You have '=item .+?' instead of the expected '=item .+?'$/;
+
+    if (0) {
+      # XXX: Let's standardize what's a warning and what's an error.  Let's not
+      # move stuff up and down the severity tree.  -- rjbs, 2013-04-12
+      # Convert errors in Pod::Simple that are warnings in Pod::Checker
+      # XXX Do differently so the $complaint can be reworded without this breaking
+      $severity = 'WARNING' if
+          $complaint =~ /^Expected '=item .+?'$/ ||
+          $complaint =~ /^You can't have =items \(as at line .+?\) unless the first thing after the =over is an =item$/ ||
+          $complaint =~ /^You have '=item .+?' instead of the expected '=item .+?'$/;
+    }
 
     $self->poderror({ -line => $line,
                       -severity => $severity,

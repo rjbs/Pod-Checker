@@ -48,17 +48,17 @@
 *** ERROR: An empty X<> at line 162 in file t/pod/poderrs.t
 *** ERROR: An empty E<> at line 164 in file t/pod/poderrs.t
 *** ERROR: =over should be: '=over' or '=over positive_number' at line 166 in file t/pod/poderrs.t
-*** WARNING: You can't have =items (as at line 170) unless the first thing after the =over is an =item at line 166 in file t/pod/poderrs.t
+*** ERROR: You can't have =items (as at line 170) unless the first thing after the =over is an =item at line 166 in file t/pod/poderrs.t
 *** WARNING: =item has no contents at line 176 in file t/pod/poderrs.t
-*** WARNING: Expected '=item *' at line 178 in file t/pod/poderrs.t
-*** WARNING: Expected '=item *' at line 180 in file t/pod/poderrs.t
+*** ERROR: Expected '=item *' at line 178 in file t/pod/poderrs.t
+*** ERROR: Expected '=item *' at line 180 in file t/pod/poderrs.t
 *** WARNING: line containing nothing but whitespace in paragraph at line 187 in file t/pod/poderrs.t
-*** WARNING: You can't have =items (as at line 188) unless the first thing after the =over is an =item at line 184 in file t/pod/poderrs.t
-*** WARNING: Expected '=item *' at line 204 in file t/pod/poderrs.t
-*** WARNING: Expected '=item *' at line 208 in file t/pod/poderrs.t
-*** WARNING: You have '=item 3' instead of the expected '=item 2' at line 218 in file t/pod/poderrs.t
-*** WARNING: Expected '=item 3' at line 222 in file t/pod/poderrs.t
-*** WARNING: Expected '=item 4' at line 224 in file t/pod/poderrs.t
+*** ERROR: You can't have =items (as at line 188) unless the first thing after the =over is an =item at line 184 in file t/pod/poderrs.t
+*** ERROR: Expected '=item *' at line 204 in file t/pod/poderrs.t
+*** ERROR: Expected '=item *' at line 208 in file t/pod/poderrs.t
+*** ERROR: You have '=item 3' instead of the expected '=item 2' at line 218 in file t/pod/poderrs.t
+*** ERROR: Expected '=item 3' at line 222 in file t/pod/poderrs.t
+*** ERROR: Expected '=item 4' at line 224 in file t/pod/poderrs.t
 *** ERROR: Expected text after =item, not a bullet at line 234 in file t/pod/poderrs.t
 *** ERROR: Expected text after =item, not a number at line 238 in file t/pod/poderrs.t
 *** WARNING: empty =over/=back block at line 248 in file t/pod/poderrs.t
