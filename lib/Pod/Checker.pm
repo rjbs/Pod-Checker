@@ -827,12 +827,6 @@ sub end_over_block  { shift->end_over(@_) }
 sub end_over_empty  { shift->end_over(@_) }
 sub end_over {
     my ($self, $flags) = @_;
-    if ($flags->{'fake-closer'}) { # meaning Pod::Simple generated this =back
-        my $line = $self->{'_list_stack'}[0]->start();
-        $self->poderror({ -line => 'EOF',
-                          -severity => 'ERROR',
-                          -msg => "=over on line $line without closing =back"});
-    }
     $self->_close_list();
 }
 

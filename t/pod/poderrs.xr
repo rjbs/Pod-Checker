@@ -67,9 +67,9 @@
 *** WARNING: empty section in previous paragraph at line 278 in file t/pod/poderrs.t
 *** WARNING: node 'I/O Operators' contains non-escaped | or / at line 288 in file t/pod/poderrs.t
 *** ERROR: empty =head1 at line 300 in file t/pod/poderrs.t
+*** ERROR: =over without closing =back at line 306 in file t/pod/poderrs.t
 *** ERROR: =begin :xml without matching =end :xml at line 312 in file t/pod/poderrs.t
 *** ERROR: =begin html without matching =end html at line 308 in file t/pod/poderrs.t
-*** ERROR: =over on line 306 without closing =back at line EOF in file t/pod/poderrs.t
 *** ERROR: unresolved internal link 'begin or begin' at line 117 in file t/pod/poderrs.t
 *** ERROR: unresolved internal link 'end with begin' at line 117 in file t/pod/poderrs.t
 *** ERROR: unresolved internal link 'OoPs' at line 117 in file t/pod/poderrs.t
