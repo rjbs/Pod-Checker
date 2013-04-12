@@ -276,6 +276,8 @@ type of the I<first> C<=item> determines the type of the list.
 
 Erroneous numbering of =item numbers; they need to ascend consecutively.
 
+=begin :future
+
 =item * I<N> unescaped C<E<lt>E<gt>> in paragraph
 
 Angle brackets not written as C<E<lt>ltE<gt>> and C<E<lt>gtE<gt>>
@@ -284,6 +286,8 @@ markup commands. This warning will be triggered on invalid
 formatting codes (e.g., C<EE<gt>...LE<gt>...E<lt>E<lt>>), FYI.
 
 This is only printed when the -warnings level is greater than 1.
+
+=end :future
 
 =item * Unknown E content in EE<lt>I<CONTENT>E<gt>
 
@@ -745,18 +749,6 @@ sub end_Para   {
     if ($self->{'_head_num'} == 1 && $self->{'_head_text'} eq 'NAME') {
         if ($self->{'_thispara'} =~ /^\s*(\S+?)\s*[,-]/) {
             $self->{'_pod_name'} = $1 unless defined $self->{'_pod_name'};
-        }
-    }
-
-    # check for unescaped '<'/'>'s in Para text
-    # XXX do I need to do this anywhere else?
-    # XXX this warning is triggered when there are invalid fcodes in the PARA
-    #     (e.g., E<> or L<<<< >>>>)
-    if ($self->{'-warnings'} > 1) {
-        if (my $count = $self->{'_thispara'} =~ tr/<>/<>/) {
-            $self->poderror({ -line => $self->{'_line'},
-                              -severity => 'WARNING',
-                              -msg => "$count unescaped <> in paragraph" });
         }
     }
 }

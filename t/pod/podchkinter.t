@@ -165,7 +165,7 @@ unlink($infile, $outfile);
 
 # test -warnings = 0, 1, >1
 open($fh, '>', $infile);
-print $fh "=head2 a warning\n\nan X<> error\n\na warning: < < <";
+print $fh "=head2 a warning\n\nan X<> error\n\n=head1 Foo\n\nPie\n\n=head1 Foo\n\nCake\n\n";
 close $fh;
 for my $warning (0..2) {
     podchecker($infile, $outfile, '-warnings' => $warning);

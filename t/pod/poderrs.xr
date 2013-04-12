@@ -34,26 +34,19 @@
 *** ERROR: An E<...> surrounding strange content at line 107 in file t/pod/poderrs.t
 *** ERROR: An E<...> surrounding strange content at line 107 in file t/pod/poderrs.t
 *** ERROR: Unknown E content in E<unknown_entity> at line 107 in file t/pod/poderrs.t
-*** WARNING: 8 unescaped <> in paragraph at line 107 in file t/pod/poderrs.t
 *** ERROR: An empty L<> at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring leading whitespace in link at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring trailing whitespace in link at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring leading whitespace in link at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring trailing whitespace in link at line 123 in file t/pod/poderrs.t
-*** WARNING: 2 unescaped <> in paragraph at line 123 in file t/pod/poderrs.t
-*** WARNING: 6 unescaped <> in paragraph at line 137 in file t/pod/poderrs.t
 *** ERROR: Unterminated L<<< ... >>> sequence at line 139 in file t/pod/poderrs.t
-*** WARNING: 4 unescaped <> in paragraph at line 139 in file t/pod/poderrs.t
 *** ERROR: Unterminated L<<< ... >>> sequence at line 141 in file t/pod/poderrs.t
-*** WARNING: 4 unescaped <> in paragraph at line 141 in file t/pod/poderrs.t
 *** WARNING: node '$|' contains non-escaped | or / at line 145 in file t/pod/poderrs.t
 *** WARNING: alternative text '$|' contains non-escaped | or / at line 145 in file t/pod/poderrs.t
 *** ERROR: =back doesn't take any parameters, but you said =back 200 at line 152 in file t/pod/poderrs.t
-*** WARNING: 2 unescaped <> in paragraph at line 156 in file t/pod/poderrs.t
 *** ERROR: A non-empty Z<> at line 160 in file t/pod/poderrs.t
 *** ERROR: An empty X<> at line 162 in file t/pod/poderrs.t
 *** ERROR: An empty E<> at line 164 in file t/pod/poderrs.t
-*** WARNING: 2 unescaped <> in paragraph at line 164 in file t/pod/poderrs.t
 *** ERROR: =over should be: '=over' or '=over positive_number' at line 166 in file t/pod/poderrs.t
 *** WARNING: You can't have =items (as at line 170) unless the first thing after the =over is an =item at line 166 in file t/pod/poderrs.t
 *** WARNING: =item has no contents at line 176 in file t/pod/poderrs.t
