@@ -446,7 +446,6 @@ sub new {
                                     #   logic easier down the road)
     $new->{'_cmds_since_head'} = 0; # num of POD directives since prev. =headN
     $new->{'_nodes'} = [];          # stack for =head/=item nodes
-    $new->{'_list_stack'} = [];     # stack for nested lists
     $new->{'_fcode_stack'} = [];    # stack for nested formatting codes
     $new->{'_fcode_pos'} = [];      # stack for position in paragraph of fcodes
     $new->{'_begin_stack'} = [];    # stack for =begins: [line #, target]
@@ -685,19 +684,6 @@ sub _init_event { # assignments done at the start of most events
     $_[0]{'_cmds_since_head'}++;
 }
 
-sub _open_list { # keep track of =open/=back blocks
-    my ($self, $indent, $line, $type, $file) = @_;
-    my $list = Pod::List->new(
-        -indent => $indent,
-        -start  => $line,
-        -type   => $type,
-        -file   => $file // $self->source_filename);
-    unshift (@{$self->{'_list_stack'}}, $list);
-    $list;
-}
-
-sub _close_list { shift @{shift->{'_list_stack'}} }
-
 sub _check_fcode {
     my ($self, $inner, $outers) = @_;
     # Check for an fcode inside another of the same fcode
@@ -818,16 +804,6 @@ sub start_over {
     my $self = shift;
     my $type = pop;
     $self->_init_event(@_);
-    $self->_open_list($_[1]{'indent'}, $self->{'_line'}, $type);
-}
-sub end_over_bullet { shift->end_over(@_) }
-sub end_over_number { shift->end_over(@_) }
-sub end_over_text   { shift->end_over(@_) }
-sub end_over_block  { shift->end_over(@_) }
-sub end_over_empty  { shift->end_over(@_) }
-sub end_over {
-    my ($self, $flags) = @_;
-    $self->_close_list();
 }
 
 sub start_item_bullet { shift->_init_event(@_) }
@@ -844,9 +820,6 @@ sub end_item {
                           -severity => 'WARNING',
                           -msg => '=item has no contents' });
     }
-
-    my $list = $self->{'_list_stack'}->[0];
-    $list->item($self->{'_thispara'}); # add item to list
 
     $self->node($self->{'_thispara'}); # remember this node
 }
