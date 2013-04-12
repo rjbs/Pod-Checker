@@ -276,18 +276,6 @@ type of the I<first> C<=item> determines the type of the list.
 
 Erroneous numbering of =item numbers; they need to ascend consecutively.
 
-=begin :future
-
-=item * I<N> unescaped C<E<lt>E<gt>> in paragraph
-
-Angle brackets not written as C<E<lt>ltE<gt>> and C<E<lt>gtE<gt>>
-can potentially cause errors as they could be misinterpreted as
-markup commands.
-
-This is only printed when the -warnings level is greater than 1.
-
-=end :future
-
 =item * Unknown E content in EE<lt>I<CONTENT>E<gt>
 
 A character entity was found that does not belong to the standard
