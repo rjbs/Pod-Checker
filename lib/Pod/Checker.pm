@@ -196,7 +196,7 @@ The I<STRING> found cannot be interpreted as a character entity.
 
 =item * An empty EE<lt>E<gt>
 
-=item * An empty L<>
+=item * An empty C<< LE<lt>E<gt> >>
 
 =item * An empty XE<lt>E<gt>
 
