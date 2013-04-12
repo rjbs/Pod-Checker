@@ -66,6 +66,8 @@
 *** WARNING: You have '=item 3' instead of the expected '=item 2' at line 218 in file t/pod/poderrs.t
 *** WARNING: Expected '=item 3' at line 222 in file t/pod/poderrs.t
 *** WARNING: Expected '=item 4' at line 224 in file t/pod/poderrs.t
+*** ERROR: Expected text after =item, not a bullet at line 234 in file t/pod/poderrs.t
+*** ERROR: Expected text after =item, not a number at line 238 in file t/pod/poderrs.t
 *** WARNING: empty =over/=back block at line 248 in file t/pod/poderrs.t
 *** ERROR: Spurious text after =pod at line 258 in file t/pod/poderrs.t
 *** ERROR: Spurious text after =cut at line 262 in file t/pod/poderrs.t
