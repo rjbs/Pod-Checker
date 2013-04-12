@@ -940,7 +940,8 @@ sub end_Document {
     # check the internal nodes for uniqueness. This pertains to
     # =headX, =item and X<...>
     if ($self->{'-warnings'} > 1 ) {
-        while (my ($node, $count) = each $self->{'_unique_nodes'}) {
+        for my $node (sort keys %{ $self->{'_unique_nodes'} }) {
+            my $count = $self->{'_unique_nodes'}{$node};
             if ($count > 1) { # not unique
                 $self->poderror({
                     -line => '-',
