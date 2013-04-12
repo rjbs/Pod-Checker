@@ -282,8 +282,7 @@ Erroneous numbering of =item numbers; they need to ascend consecutively.
 
 Angle brackets not written as C<E<lt>ltE<gt>> and C<E<lt>gtE<gt>>
 can potentially cause errors as they could be misinterpreted as
-markup commands. This warning will be triggered on invalid
-formatting codes (e.g., C<EE<gt>...LE<gt>...E<lt>E<lt>>), FYI.
+markup commands.
 
 This is only printed when the -warnings level is greater than 1.
 
