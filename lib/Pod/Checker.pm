@@ -846,15 +846,6 @@ sub end_item {
                           -msg => '=item has no contents' });
     }
 
-    # warn if type is of definition but content starts with digit or '*'
-    # the other cases are taken care of in Pod::Simple
-    if ($type eq 'definition' && $self->{'_thispara'} =~ /^([*1-9])\s/) {
-        $self->poderror({ -line => $self->{'_line'},
-                          -severity => 'WARNING',
-                          -msg => "Possible =item type mismatch: '$1' found ".
-                              "leading a supposed definition =item" });
-    }
-
     my $list = $self->{'_list_stack'}->[0];
     $list->item($self->{'_thispara'}); # add item to list
 
