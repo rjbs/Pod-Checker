@@ -65,7 +65,7 @@ sub testpodcheck( @ ) {
          $_ = VMS::Filespec::unixify($_)  unless  ref;
       }
    }
-   podchecker($infile, $outfile);
+   podchecker($infile, $outfile, -warnings => 200);
    if ( testcmp({'-cmplines' => \&msgcmp}, $outfile, $cmpfile) ) {
        $different = "$outfile is different from $cmpfile";
    }

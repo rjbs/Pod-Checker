@@ -14,7 +14,7 @@ exit( ($passed == 1) ? 0 : -1 )  unless $ENV{HARNESS_ACTIVE};
                                         
 ### The above line should contain spaces
 
-
+#line 18
 __END__
 
 =head2 This should cause a warning
