@@ -15,8 +15,6 @@ use Data::Dumper
 our $VERSION = '1.45';  ## Current version of this package
 use 5.14.0;
 
-use Pod::ParseUtils; ## for hyperlinks and lists
-
 =head1 NAME
 
 Pod::Checker, podchecker() - check pod documents for syntax errors
@@ -449,7 +447,7 @@ sub new {
     $new->{'_fcode_stack'} = [];    # stack for nested formatting codes
     $new->{'_fcode_pos'} = [];      # stack for position in paragraph of fcodes
     $new->{'_begin_stack'} = [];    # stack for =begins: [line #, target]
-    $new->{'_links'} = [];          # stack for internal hyperlinks
+    $new->{'_internal_links'} = []; # set of linked-to internal sections
     $new->{'_index'} = [];          # stack for text in X<>s
 
     $new->accept_targets('*'); # check all =begin/=for blocks
@@ -590,6 +588,8 @@ Add (if argument specified) and retrieve the index entries (as defined by
 C<XE<lt>E<gt>>) of the current POD. They consist of plain text, each piece
 of whitespace is collapsed to a single blank.
 
+=back
+
 =cut
 
 # set/return index entries of current POD
@@ -605,28 +605,6 @@ sub idx {
         return $text;
     }
     @{$self->{'_index'}};
-}
-
-##################################
-
-=item C<$checker-E<gt>hyperlink()>
-
-Add (if argument specified) and retrieve the hyperlinks (as defined by
-C<LE<lt>E<gt>>) of the current POD. They consist of a 2-item array: line
-number and C<Pod::Hyperlink> object.
-
-=back
-
-=cut
-
-# set/return hyperlinks of the current POD
-sub hyperlink {
-    my $self = shift;
-    if($_[0]) {
-        push(@{$self->{'_links'}}, $_[0]);
-        return $_[0];
-    }
-    @{$self->{'_links'}};
 }
 
 ##################################
@@ -865,17 +843,14 @@ sub end_Document {
     # I don't know what I was thinking when I made the above TODO, and I don't
     # know what it means...
 
-    for ($self->hyperlink()) {
-        my ($line, $link) = @$_;
+    for my $link (@{ $self->{'_internal_links'} }) {
         # XXX What if there is a link to the page by the name
         # e.g. in Tk::Pod : L<Tk::Pod/"DESCRIPTION">
-        if ($link->node() && !$link->page()
-            && $link->type() ne 'hyperlink'
-            && !$nodes{$link->node()}) {
-              $self->poderror({ -line => $line || '',
-                                -severity => 'ERROR',
-                                -msg => "unresolved internal link '".
-                                    $link->node() ."'"});
+        my ($name, $line) = @$link;
+        unless ( $nodes{$name} ) {
+            $self->poderror({ -line => $line,
+                              -severity => 'ERROR',
+                              -msg => "unresolved internal link '$name'"});
         }
     }
 
@@ -930,16 +905,30 @@ sub start_L {
     # Pod::Hyperlink removes the whitespace and treats the contents as a page.
     # Note that we also use Pod::Hyperlink to issue some L<> error checks.
 
-    my $link = Pod::Hyperlink->new($flags->{'raw'});
+}
 
-    # force stringification of page and node
-    my $page = exists $flags->{'to'} ? "$flags->{'to'}" : '';
-    my $node = exists $flags->{'section'} ? "$flags->{'section'}" : '';
-    $link->page($page);
-    $link->node($node);
-    $link->line($self->{'_line'});
-    $link->type('hyperlink') if $flags->{'type'} eq 'url';
-    $self->hyperlink([$self->{'_line'}, $link]); # remember link
+sub _treat_Ls {
+    my ($self, @stack) = @_;
+
+    my $start_line = $stack[0][1]{'start_line'};
+
+    $self->SUPER::_treat_Ls(@stack);
+
+    while(my $treelet = shift @stack) {
+        for(my $i = 2; $i < @$treelet; ++$i) {
+            # iterate over children of current tree node
+            next unless ref $treelet->[$i];  # text nodes are uninteresting
+            unless($treelet->[$i][0] eq 'L') {
+                unshift @stack, $treelet->[$i]; # recurse
+                next;
+            }
+
+            my $arg = $treelet->[$i][1];
+            if ($arg->{type} eq 'pod' && ! $arg->{to} && $arg->{section}) {
+                push @{ $self->{'_internal_links'} }, [ "$arg->{section}", $start_line ];
+            }
+        }
+    }
 }
 
 sub end_L {

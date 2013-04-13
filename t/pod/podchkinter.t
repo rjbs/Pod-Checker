@@ -5,7 +5,7 @@ use 5.14.0;
 use Pod::Checker;
 use Data::Dumper;
 use Test::More;
-BEGIN { plan tests => 105 };
+BEGIN { plan tests => 93 };
 
 my ($infile, $outfile) = ("tempin.tmp", "tempout.tmp"); 
 
@@ -68,7 +68,6 @@ while (my ($i, $pod) = each @$pods) {
     # got results
     my @got_node = $pc->node();
     my @got_idx  = $pc->idx();
-    my @got_hlnk = $pc->hyperlink();
     my $got_errs = $pc->num_errors();
     my $got_warn = $pc->num_warnings();
 
@@ -80,11 +79,6 @@ while (my ($i, $pod) = each @$pods) {
 
     is($#got_idx, $#$idx, "length idx - iter.$i");
     is($got_idx[$_], $$idx[$_], "idx $_ - iter.$i") for 0..$#$idx;
-
-    # XXX test more than just the hlnk text; test node(), etc
-    is($#got_hlnk, $#$hlnk, "length hlnk - iter.$i");
-    is($got_hlnk[$_][1]->text(), $$hlnk[$_], "hlnk $_ - iter.$i")
-        for 0..$#$hlnk;
 
     is($got_errs, $errs, "num errors - iter.$i");
     is($got_warn, $warn, "num warnings - iter.$i");
