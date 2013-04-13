@@ -931,14 +931,7 @@ sub start_L {
     # Note that we also use Pod::Hyperlink to issue some L<> error checks.
 
     my $link = Pod::Hyperlink->new($flags->{'raw'});
-    foreach my $w ($link->warning()) {
-        # It has been decided that the following should not be a warning
-        # XXX remove in Pod::ParseUtils instead of this workaround
-        next if $w =~ /^\(section\) in '.+' deprecated$/;
-        $self->poderror({ -line => $self->{'_line'},
-                          -severity => 'WARNING',
-                          -msg => $w });
-    }
+
     # force stringification of page and node
     my $page = exists $flags->{'to'} ? "$flags->{'to'}" : '';
     my $node = exists $flags->{'section'} ? "$flags->{'section'}" : '';
@@ -948,6 +941,7 @@ sub start_L {
     $link->type('hyperlink') if $flags->{'type'} eq 'url';
     $self->hyperlink([$self->{'_line'}, $link]); # remember link
 }
+
 sub end_L {
     my $self = shift;
     $self->end_fcode();

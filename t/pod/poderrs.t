@@ -281,14 +281,14 @@ previous section is empty!
 
 =head1 LINK TESTS
 
-Due to bug reported by Rafael Garcia-Suarez "rgarciasuarez@free.fr":
 
-The following hyperlinks :
 
-L</I/O Operators>
-L</"I/O Operators">
-trigger a podchecker warning (using bleadperl) :
-    node 'I/O Operators' contains non-escaped | or /
+
+
+
+
+
+
 
 L<perlop/"I/O Operators">
 don't trigger a warning because node is quoted
