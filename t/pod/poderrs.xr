@@ -35,12 +35,16 @@
 *** ERROR: An E<...> surrounding strange content at line 107 in file t/pod/poderrs.t
 *** ERROR: Unknown E content in E<unknown_entity> at line 107 in file t/pod/poderrs.t
 *** ERROR: An empty L<> at line 123 in file t/pod/poderrs.t
+*** ERROR: L<> starts or ends with whitespace at line 123 in file t/pod/poderrs.t
+*** ERROR: L<> starts or ends with whitespace at line 123 in file t/pod/poderrs.t
+*** ERROR: L<> starts or ends with whitespace at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring leading whitespace in link at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring trailing whitespace in link at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring leading whitespace in link at line 123 in file t/pod/poderrs.t
 *** WARNING: ignoring trailing whitespace in link at line 123 in file t/pod/poderrs.t
 *** ERROR: Unterminated L<<< ... >>> sequence at line 139 in file t/pod/poderrs.t
 *** ERROR: Unterminated L<<< ... >>> sequence at line 141 in file t/pod/poderrs.t
+*** ERROR: alternative text 'some text with / in it' contains non-escaped | or / at line 145 in file t/pod/poderrs.t
 *** WARNING: node '$|' contains non-escaped | or / at line 145 in file t/pod/poderrs.t
 *** WARNING: alternative text '$|' contains non-escaped | or / at line 145 in file t/pod/poderrs.t
 *** ERROR: =back doesn't take any parameters, but you said =back 200 at line 152 in file t/pod/poderrs.t
