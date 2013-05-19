@@ -2,9 +2,8 @@
 # Pod/Checker.pm -- check pod documents for syntax errors
 #
 # Copyright (C) 1994-2000 by Bradford Appleton. All rights reserved.
-# This file is part of "PodParser". PodParser is free software;
-# you can redistribute it and/or modify it under the same terms
-# as Perl itself.
+# This is free software; you can redistribute it and/or modify it under the
+# same terms as Perl itself.
 #############################################################################
 
 package Pod::Checker;
@@ -349,18 +348,17 @@ POD translators can use this feature to syntax-check and get the nodes in
 a first pass before actually starting to convert. This is expensive in terms
 of execution time, but allows for very robust conversions.
 
-Since PodParser-1.24 the B<Pod::Checker> module uses only the B<poderror>
+Since v1.24 the B<Pod::Checker> module uses only the B<poderror>
 method to print errors and warnings. The summary output (e.g.
 "Pod syntax OK") has been dropped from the module and has been included in
 B<podchecker> (the script). This allows users of B<Pod::Checker> to
 control completely the output behavior. Users of B<podchecker> (the script)
 get the well-known behavior.
 
-# XXX 1.45 or 1.46
-PodChecker-1.45 inherits from Pod::Simple as opposed to all previous versions
-inheriting from Pod::Parser. Do B<not> use Pod::Simple's interface when using
-Pod::Checker unless it is documented somewhere on this page. I repeat, DO
-B<NOT> USE POD::SIMPLE'S INTERFACE.
+v1.45 inherits from Pod::Simple as opposed to all previous versions
+inheriting from Pod::Parser. Do B<not> use Pod::Simple's interface when
+using Pod::Checker unless it is documented somewhere on this page. I
+repeat, DO B<NOT> USE POD::SIMPLE'S INTERFACE.
 
 =cut
 
