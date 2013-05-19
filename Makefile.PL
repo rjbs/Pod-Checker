@@ -39,7 +39,7 @@ push @testdirs, $test2dir if (-d $test2dir);
 
 # needed for new pod2usage2.t
 my %prereq = (
-  'Pod::Parser'    => 1.60,
+  'Pod::Simple'    => 3.28,
   'Test::More'     => 0.60,
   'Cwd'            => 0,
   'File::Basename' => 0
