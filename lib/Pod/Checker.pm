@@ -667,7 +667,7 @@ sub _check_fcode {
     # Check for an fcode inside another of the same fcode
     # XXX line number is the line of the start of the paragraph that the warning
     # is in, not the line that the warning is on. Fix this
-    if ($inner ~~ $outers) {
+    if (grep { $_ eq $inner } @$outers) {
         $self->poderror({ -line => $self->{'_line'},
                           -severity => 'WARNING',
                           -msg => "nested commands $inner<...$inner<...>...>"});
